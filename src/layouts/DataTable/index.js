@@ -3,7 +3,7 @@ import { useEffect, useState, useContext, useCallback } from "react";
 import PdfPreview from "../../components/PdfPreview";
 import { invoiceDataContext } from "../../contexts/invoiceDataContext";
 import TextLine from "../../components/TextLine";
-const { ipcRenderer } = window.require("electron");
+import { read, readInvoiceAndCustomerNames } from "../../utils/mongo";
 
 const DataTable = ({ setPage }) => {
     const { createBillForPreview, setBillForEdit } =
@@ -15,12 +15,8 @@ const DataTable = ({ setPage }) => {
     const [search, setSearch] = useState("");
 
     const fetchAndResetInvoiceList = useCallback(async () => {
-        const invoicesItems = await ipcRenderer.invoke(
-            "readInvoiceAndCustomerNames"
-        );
-        console.log("Invoices: ", invoicesItems);
-        const dataItems = await ipcRenderer.invoke("read");
-        console.log("Data items: ", dataItems);
+        const invoicesItems = await readInvoiceAndCustomerNames();
+        const dataItems = await read();
         if (dataItems.length > 0) {
             const selectedBill = dataItems[0];
             const bill = createBillForPreview(selectedBill);

@@ -1,29 +1,11 @@
-const { ipcMain } = require("electron");
 const { MongoClient } = require("mongodb");
-require("dotenv").config({ path: "./.env" });
 
-const connectToAtlas = async () => {
+export const read = async () => {
+    const dbURI = process.env.REACT_APP_ATLAS_URI;
+    const client = new MongoClient(dbURI);
     try {
-        const dbURI = process.env.ATLAS_URI;
-        client = new MongoClient(dbURI);
         await client.connect();
         console.log("Connected to MongoDB Atlas");
-    } catch (err) {
-        console.error(err);
-    }
-};
-
-const disconnectFromAtlas = async () => {
-    try {
-        await client.close();
-        console.log("Disconnected from MongoDB Atlas");
-    } catch (err) {
-        console.error(err);
-    }
-};
-
-ipcMain.handle("read", async () => {
-    try {
         const db = client.db("billy-db");
         const collection = db.collection("data");
         let data = await collection.find({}).toArray();
@@ -32,14 +14,22 @@ ipcMain.handle("read", async () => {
             _id: doc._id.toString(),
         }));
         console.log(data);
+        await client.close();
+        console.log("Disconnected from MongoDB Atlas");
         return data;
     } catch (err) {
         console.error(err);
+        await client.close();
+        console.log("Disconnected from MongoDB Atlas");
     }
-});
+};
 
-ipcMain.handle("readInvoiceAndCustomerNames", async () => {
+export const readInvoiceAndCustomerNames = async () => {
+    const dbURI = process.env.REACT_APP_ATLAS_URI;
+    const client = new MongoClient(dbURI);
     try {
+        await client.connect();
+        console.log("Connected to MongoDB Atlas");
         const db = client.db("billy-db");
         const collection = db.collection("data");
         const aggregationPipeline = [
@@ -57,14 +47,22 @@ ipcMain.handle("readInvoiceAndCustomerNames", async () => {
             _id: doc._id.toString(),
         }));
         console.log(data);
+        await client.close();
+        console.log("Disconnected from MongoDB Atlas");
         return data;
     } catch (err) {
         console.error(err);
+        await client.close();
+        console.log("Disconnected from MongoDB Atlas");
     }
-});
+};
 
-ipcMain.handle("write", async (event, newItem) => {
+export const write = async (newItem) => {
+    const dbURI = process.env.REACT_APP_ATLAS_URI;
+    const client = new MongoClient(dbURI);
     try {
+        await client.connect();
+        console.log("Connected to MongoDB Atlas");
         const db = client.db("billy-db");
         const collection = db.collection("data");
         const result = await collection.insertOne(newItem);
@@ -72,12 +70,11 @@ ipcMain.handle("write", async (event, newItem) => {
             message: "Data written successfully",
             insertedId: result.insertedId,
         });
+        await client.close();
+        console.log("Disconnected from MongoDB Atlas");
     } catch (err) {
         console.error(err);
+        await client.close();
+        console.log("Disconnected from MongoDB Atlas");
     }
-});
-
-module.exports = {
-    connectToAtlas,
-    disconnectFromAtlas,
 };

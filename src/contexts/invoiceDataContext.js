@@ -1,5 +1,5 @@
 import { useState, createContext } from "react";
-const { ipcRenderer } = window.require("electron");
+import { write } from "../utils/mongo";
 
 export const invoiceDataContext = createContext({});
 
@@ -167,7 +167,7 @@ const InvoiceDataContextProvider = ({ children }) => {
             igstCheck,
             totalInWords,
         };
-        await ipcRenderer.invoke("write", data);
+        await write(data);
     };
 
     const setBillForEdit = (bill) => {
