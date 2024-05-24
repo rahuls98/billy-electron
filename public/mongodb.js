@@ -26,7 +26,11 @@ ipcMain.handle("read", async () => {
     try {
         const db = client.db("billy-db");
         const collection = db.collection("data");
-        const data = await collection.find({}).toArray();
+        let data = await collection.find({}).toArray();
+        data = data.map((doc) => ({
+            ...doc,
+            _id: doc._id.toString(),
+        }));
         console.log(data);
         return data;
     } catch (err) {
@@ -38,7 +42,6 @@ ipcMain.handle("readInvoiceAndCustomerNames", async () => {
     try {
         const db = client.db("billy-db");
         const collection = db.collection("data");
-
         const aggregationPipeline = [
             {
                 $project: {
@@ -48,13 +51,13 @@ ipcMain.handle("readInvoiceAndCustomerNames", async () => {
                 },
             },
         ];
-
-        const result = await collection
-            .aggregate(aggregationPipeline)
-            .toArray();
-
-        console.log(result);
-        return result;
+        let data = await collection.aggregate(aggregationPipeline).toArray();
+        data = data.map((doc) => ({
+            ...doc,
+            _id: doc._id.toString(),
+        }));
+        console.log(data);
+        return data;
     } catch (err) {
         console.error(err);
     }

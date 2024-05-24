@@ -167,7 +167,7 @@ const InvoiceDataContextProvider = ({ children }) => {
             igstCheck,
             totalInWords,
         };
-        await ipcRenderer.invoke("writeData", data);
+        await ipcRenderer.invoke("write", data);
     };
 
     const setBillForEdit = (bill) => {

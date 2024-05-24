@@ -18,7 +18,9 @@ const DataTable = ({ setPage }) => {
         const invoicesItems = await ipcRenderer.invoke(
             "readInvoiceAndCustomerNames"
         );
+        console.log("Invoices: ", invoicesItems);
         const dataItems = await ipcRenderer.invoke("read");
+        console.log("Data items: ", dataItems);
         if (dataItems.length > 0) {
             const selectedBill = dataItems[0];
             const bill = createBillForPreview(selectedBill);
@@ -85,7 +87,8 @@ const DataTable = ({ setPage }) => {
                                 >
                                     <div
                                         className={
-                                            selectedItem === invoice._id
+                                            selectedItem ===
+                                            invoice._id.toString()
                                                 ? "active"
                                                 : ""
                                         }
