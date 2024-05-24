@@ -76,7 +76,7 @@ input[type="text"] {
     html,
     .App {
         width: 100vw;
-        height: 100vh;
+        height: 100%;
         padding-top: 0;
         -webkit-print-color-adjust: exact;
         color-adjust: exact;
