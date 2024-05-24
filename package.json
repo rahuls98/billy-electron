@@ -36,7 +36,9 @@
         ]
     },
     "devDependencies": {
+        "dotenv": "^16.4.5",
         "electron": "^30.0.8",
+        "mongodb": "^6.6.2",
         "webpack-node-externals": "^3.0.0"
     }
 }

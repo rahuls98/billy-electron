@@ -1,5 +1,6 @@
 const path = require("path");
 const { app, BrowserWindow } = require("electron");
+const { connectToAtlas, disconnectFromAtlas } = require("./mongodb");
 
 const isMac = process.platform === "darwin";
 
@@ -16,8 +17,13 @@ const createWindow = () => {
     mainWindow.show();
 };
 
-app.on("ready", createWindow);
+app.on("ready", () => {
+    connectToAtlas();
+    createWindow();
+});
 
 app.on("window-all-closed", () => {
+    disconnectFromAtlas();
+
     if (!isMac) app.quit();
 });
