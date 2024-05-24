@@ -1,3 +1,84 @@
 .App {
+    height: calc(100vh - 70px);
+    padding-top: 70px;
+    width: 100vw;
+    overflow: scroll;
+    position: relative;
+}
+
+.text-center {
     text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+button {
+    background-color: white;
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
+    border: var(--border-color) solid 1px;
+    margin: 0 0 0 10px;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: rgb(74, 30, 31);
+    color: white;
+    transition: 0.1s ease;
+}
+
+label {
+    margin-top: 20px;
+    display: block;
+}
+
+input[type="text"] {
+    display: block;
+    width: 300px;
+    padding: 10px;
+    border-radius: 8px;
+    border: var(--border-color) solid 1px;
+    margin-top: 5px;
+}
+
+.navbar {
+    width: 100%;
+    height: 70px;
+    position: absolute;
+    top: 0;
+    z-index: 100;
+    background-color: rgb(74, 30, 31);
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.navbar span {
+    margin-right: 20px;
+    color: white;
+}
+
+.navbar span.active {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.navbar span:hover {
+    color: white;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+@media print {
+    body,
+    html,
+    .App {
+        width: 100vw;
+        height: 100vh;
+        padding-top: 0;
+        -webkit-print-color-adjust: exact;
+        color-adjust: exact;
+    }
 }

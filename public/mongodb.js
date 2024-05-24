@@ -5,10 +5,7 @@ require("dotenv").config({ path: "./.env" });
 const connectToAtlas = async () => {
     try {
         const dbURI = process.env.ATLAS_URI;
-        client = new MongoClient(dbURI, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
+        client = new MongoClient(dbURI);
         await client.connect();
         console.log("Connected to MongoDB Atlas");
     } catch (err) {
@@ -31,6 +28,7 @@ ipcMain.handle("read", async () => {
         const collection = db.collection("data");
         const data = await collection.find({}).toArray();
         console.log(data);
+        return data;
     } catch (err) {
         console.error(err);
     }
@@ -56,6 +54,7 @@ ipcMain.handle("readInvoiceAndCustomerNames", async () => {
             .toArray();
 
         console.log(result);
+        return result;
     } catch (err) {
         console.error(err);
     }

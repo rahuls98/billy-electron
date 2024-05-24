@@ -1,15 +1,46 @@
 import "./App.css";
-import { useEffect } from "react";
-const { ipcRenderer } = window.require("electron");
+import { useState } from "react";
+import Editor from "./layouts/Editor";
+import Preview from "./layouts/Preview";
+import DataTable from "./layouts/DataTable";
 
 function App() {
-    useEffect(() => {
-        ipcRenderer
-            .invoke("readInvoiceAndCustomerNames")
-            .then((data) => console.log(data));
-    }, []);
+    const [page, setPage] = useState(0);
 
-    return <div className="App">Billy says hi!</div>;
+    const viewHandler = () => {
+        switch (page) {
+            case 0:
+                return <Editor setPage={setPage} />;
+            case 1:
+                return <Preview setPage={setPage} print={true} />;
+            case 2:
+                return <DataTable setPage={setPage} />;
+            default:
+                return null;
+        }
+    };
+
+    return (
+        <div className="App">
+            {page !== 1 ? (
+                <div className="navbar">
+                    <span
+                        className={page === 0 ? "active" : ""}
+                        onClick={() => setPage(0)}
+                    >
+                        Editor
+                    </span>
+                    <span
+                        className={page === 2 ? "active" : ""}
+                        onClick={() => setPage(2)}
+                    >
+                        Database
+                    </span>
+                </div>
+            ) : null}
+            {viewHandler()}
+        </div>
+    );
 }
 
 export default App;

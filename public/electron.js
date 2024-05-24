@@ -3,7 +3,6 @@ const { app, BrowserWindow } = require("electron");
 const { connectToAtlas, disconnectFromAtlas } = require("./mongodb");
 
 const isMac = process.platform === "darwin";
-
 let mainWindow;
 
 const createWindow = () => {

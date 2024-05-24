@@ -1,0 +1,132 @@
+.pdf-preview-container {
+    border: var(--border-color) solid 1px;
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-family: 11px;
+}
+
+#letter-head {
+    width: 100%;
+    background: linear-gradient(rgb(74, 30, 31), rgb(42, 19, 20));
+    display: flex;
+    color: white;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#letter-head * {
+    width: 50%;
+}
+
+#letter-head-title {
+    font-size: 25px;
+    font-family: "Times New Roman", Times, serif;
+    padding: 0;
+}
+
+#letter-head-address {
+    border-left: white solid 1px;
+    font-size: 11px;
+    padding: 5px 0 5px 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#invoice-metadata {
+    padding: 0 10px 0 10px;
+}
+
+#provider-details {
+    display: flex;
+}
+
+#provider-details div:nth-of-type(1) {
+    width: 60%;
+}
+
+#provider-details div:nth-of-type(2) {
+    width: 22%;
+}
+
+#provider-details div:nth-of-type(3) {
+    width: 18%;
+}
+
+#customer-details {
+    display: flex;
+}
+
+#customer-details div:nth-of-type(1) {
+    width: 60%;
+}
+
+#customer-details div:nth-of-type(2) {
+    width: 40%;
+}
+
+table {
+    page-break-inside: auto;
+}
+tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+}
+
+#price-breakdown table {
+    width: 100%;
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+#price-breakdown th {
+    border: 1px solid black;
+    border-collapse: collapse;
+    background-color: rgb(230, 226, 226);
+    padding: 10px;
+}
+
+#price-breakdown td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 10px;
+    white-space: break-spaces;
+    hyphens: auto;
+}
+
+#price-summation table {
+    width: 100%;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+#price-summation td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 10px;
+}
+
+#price-summation tr td:nth-of-type(1) {
+    text-align: left;
+}
+
+#price-summation tr td:nth-of-type(2) {
+    text-align: center;
+}
+
+.highlight-cell {
+    background-color: rgb(230, 226, 226);
+    font-weight: bold;
+}
+
+#bank-and-signature {
+    display: flex;
+    padding: 0 10px 0 10px;
+}
+
+#bank-and-signature div:nth-of-type(1) {
+    width: 75%;
+}
+
+#bank-and-signature div:nth-of-type(2) {
+    width: 25%;
+}

@@ -1,0 +1,12 @@
+#pdf-preview-controls-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding: 10px;
+    z-index: 5;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: right;
+}

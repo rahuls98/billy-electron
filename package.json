@@ -15,7 +15,8 @@
     },
     "scripts": {
         "build": "craco build",
-        "start": "electron ."
+        "start": "electron .",
+        "dev": "craco build && electron ."
     },
     "eslintConfig": {
         "extends": [
