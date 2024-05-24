@@ -100,7 +100,13 @@ const DataTable = ({ setPage }) => {
                                         <button onClick={handleEdit}>
                                             Edit
                                         </button>
-                                        <button>Delete</button>
+                                        <button
+                                            onClick={() => {
+                                                console.log(invoice._id);
+                                            }}
+                                        >
+                                            Delete
+                                        </button>
                                     </div>
                                 </li>
                             );
