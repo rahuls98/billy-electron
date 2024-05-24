@@ -4,7 +4,6 @@ import InvoiceForm from "../../components/InvoiceForm";
 import "./style.css";
 import { useContext } from "react";
 import { invoiceDataContext } from "../../contexts/invoiceDataContext";
-const { dialog } = require("electron");
 
 const Editor = ({ setPage }) => {
     const {

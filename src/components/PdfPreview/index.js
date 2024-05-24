@@ -149,26 +149,27 @@ const PdfPreview = ({ bill }) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {particulars &&
-                            particulars.map((particular) => (
-                                <tr key={particular[0]?.value}>
-                                    <td>{particular[0]?.value}</td>
-                                    <td lang="en">{particular[1]?.value}</td>
-                                    <td>{particular[2]?.value}</td>
-                                    <td>{particular[3]?.value}</td>
-                                    <td>
-                                        {particular[4]?.value?.toLocaleString(
-                                            "en-IN"
-                                        )}
-                                    </td>
-                                    <td>
-                                        {(
-                                            particular[3]?.value *
-                                            particular[4]?.value
-                                        ).toLocaleString("en-IN")}
-                                    </td>
-                                </tr>
-                            ))}
+                        {particulars.length > 0
+                            ? particulars.map((particular) => (
+                                  <tr key={particular[0]?.value}>
+                                      <td>{particular[0]?.value}</td>
+                                      <td lang="en">{particular[1]?.value}</td>
+                                      <td>{particular[2]?.value}</td>
+                                      <td>{particular[3]?.value}</td>
+                                      <td>
+                                          {particular[4]?.value?.toLocaleString(
+                                              "en-IN"
+                                          )}
+                                      </td>
+                                      <td>
+                                          {(
+                                              particular[3]?.value *
+                                              particular[4]?.value
+                                          ).toLocaleString("en-IN")}
+                                      </td>
+                                  </tr>
+                              ))
+                            : null}
                     </tbody>
                 </table>
                 <VerticalSpace size={20} />

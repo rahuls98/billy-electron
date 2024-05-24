@@ -128,7 +128,7 @@ const InvoiceDataContextProvider = ({ children }) => {
                 addressLine3:
                     data?.deliveryAddressLine3 || deliveryAddressLine3,
             },
-            particulars: data?.particulars || "",
+            particulars: data?.particulars || particulars,
             gst: {
                 cgst: data?.cgst || cgst,
                 cgstCheck: data?.cgstCheck || cgstCheck,
@@ -171,7 +171,6 @@ const InvoiceDataContextProvider = ({ children }) => {
     };
 
     const setBillForEdit = (bill) => {
-        console.log(bill);
         setInvoiceNo(bill.invoiceMetadata.invoiceNo);
         setInvoiceDated(bill.invoiceMetadata.invoiceDated);
         setSupplierCode(bill.invoiceMetadata.supplierCode);
