@@ -2,6 +2,7 @@ import "./style.css";
 import InvoiceBaseData from "./data.json";
 import VerticalSpace from "../VerticalSpace";
 import TextLine from "../TextLine";
+import Signature from "../../sign.png";
 
 const PdfPreview = ({ bill }) => {
     const {
@@ -263,7 +264,7 @@ const PdfPreview = ({ bill }) => {
                 </div>
                 <div>
                     <TextLine text={"For SHRISTI"} />
-                    <VerticalSpace size={50} />
+                    <img alt="signature" src={Signature} width={100} />
                     <TextLine text={"Authorised signatory"} />
                 </div>
             </div>
